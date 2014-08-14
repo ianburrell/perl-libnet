@@ -15,14 +15,14 @@ use vars qw(@ISA $VERSION);
 use Carp;
 
 use Socket 1.3;
-use IO::Socket;
+use IO::Socket::IP;
 use Time::Local;
 use Net::Cmd;
 use Net::Config;
 use Fcntl qw(O_WRONLY O_RDONLY O_APPEND O_CREAT O_TRUNC);
 
 $VERSION = '2.79';
-@ISA     = qw(Exporter Net::Cmd IO::Socket::INET);
+@ISA     = qw(Exporter Net::Cmd IO::Socket::IP;
 
 # Someday I will "use constant", when I am not bothered to much about
 # compatibility with older releases of perl
@@ -806,7 +806,7 @@ sub port {
 
     # create a Listen socket at same address as the command socket
 
-    ${*$ftp}{'net_ftp_listen'} ||= IO::Socket::INET->new(
+    ${*$ftp}{'net_ftp_listen'} ||= IO::Socket::IP->new(
       Listen    => 5,
       Proto     => 'tcp',
       Timeout   => $ftp->timeout,
@@ -1301,7 +1301,7 @@ C<Net::FTP> is a class implementing a simple FTP client in Perl as
 described in RFC959.  It provides wrappers for a subset of the RFC959
 commands.
 
-The Net::FTP class is a subclass of Net::Cmd and IO::Socket::INET.
+The Net::FTP class is a subclass of Net::Cmd and IO::Socket::IP.
 
 =head1 OVERVIEW
 
@@ -1348,7 +1348,7 @@ C<OPTIONS> are passed in a hash like fashion, using key and value pairs.
 Possible options are:
 
 B<Host> - FTP host to connect to. It may be a single scalar, as defined for
-the C<PeerAddr> option in L<IO::Socket::INET>, or a reference to
+the C<PeerAddr> option in L<IO::Socket::IP>, or a reference to
 an array with hosts to try in turn. The L</host> method will return the value
 which was used to connect to the host.
 
@@ -1395,7 +1395,7 @@ are displayed for all transfers.  You can, of course, call C<hash()>
 explicitly whenever you'd like.
 
 B<LocalAddr> - Local address to use for all socket connections, this
-argument will be passed to L<IO::Socket::INET>
+argument will be passed to L<IO::Socket::IP>
 
 If the constructor fails undef will be returned and an error message will
 be in $@
@@ -1728,8 +1728,8 @@ data connections. Misuse of this method can hang the connection.
 =head1 THE dataconn CLASS
 
 Some of the methods defined in C<Net::FTP> return an object which will
-be derived from this class.The dataconn class itself is derived from
-the C<IO::Socket::INET> class, so any normal IO operations can be performed.
+be derived from this class. The dataconn class itself is derived from
+the C<IO::Socket::IP> class, so any normal IO operations can be performed.
 However the following methods are defined in the dataconn class and IO should
 be performed using these.
 

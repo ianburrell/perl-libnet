@@ -9,7 +9,7 @@ package Net::Time;
 use strict;
 use vars qw($VERSION @ISA @EXPORT_OK $TIMEOUT);
 use Carp;
-use IO::Socket;
+use IO::Socket::IP;
 require Exporter;
 use Net::Config;
 use IO::Select;
@@ -34,7 +34,7 @@ sub _socket {
   my $me;
 
   foreach $host (@$hosts) {
-    $me = IO::Socket::INET->new(
+    $me = IO::Socket::IP->new(
       PeerAddr => $host,
       PeerPort => $port,
       Proto    => $proto

@@ -15,7 +15,7 @@ use Net::Config;
 
 $VERSION = "2.31";
 
-@ISA = qw(Net::Cmd IO::Socket::INET);
+@ISA = qw(Net::Cmd IO::Socket::IP);
 
 
 sub new {

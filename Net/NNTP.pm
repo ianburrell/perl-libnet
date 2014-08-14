@@ -15,7 +15,7 @@ use Time::Local;
 use Net::Config;
 
 $VERSION = "2.26";
-@ISA     = qw(Net::Cmd IO::Socket::INET);
+@ISA     = qw(Net::Cmd IO::Socket::IP);
 
 
 sub new {

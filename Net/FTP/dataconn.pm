@@ -10,7 +10,7 @@ use Net::Cmd;
 use Errno;
 
 $VERSION = '0.12';
-@ISA     = qw(IO::Socket::INET);
+@ISA     = qw(IO::Socket::IP);
 
 
 sub reading {
